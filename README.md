@@ -1,2 +1,17 @@
-# Interview-task
-This task is going to create a AKS cluster using terraform and deploying a simple app on cluster.
+#  AKS DevOps Interview Assignment
+
+## Overview
+This project demonstrates end-to-end DevOps implementation:
+
+- Infrastructure provisioning using Terraform
+- Containerization using Docker
+- Image storage in Azure Container Registry (ACR)
+- Deployment to Azure Kubernetes Service (AKS)
+- External access via LoadBalancer
+
+---
+Work Flow
+User → LoadBalancer → AKS → Pods → Docker → ACR
+
+---
+
