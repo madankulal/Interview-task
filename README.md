@@ -10,6 +10,7 @@ Moniotr and Logging Enabled:
 Infrastructure level:
  * Cluster Logs and Node logs
  * Containter stdout and stderr logs
+ * app level.
 
 Secrets Management implemented: 
 * Secrets stored in Azure Key Vault
