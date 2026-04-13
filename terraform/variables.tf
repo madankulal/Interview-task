@@ -20,6 +20,6 @@ variable "node_count" {
 
 variable "acr_name" {
   description = "ACR name (must be globally unique)"
-  default     = "qdbhexawaredemo"
+  default     = "qdbhexawaredemo123"
 }
 variable "tenant_id" {}
