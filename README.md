@@ -26,4 +26,4 @@ Horizontal Pod Autoscaler (HPA)
 Helm charts
 Monitoring with Prometheus & Grafana
 
-To access APP http://40.76.153.104/
+To access APP http://<external ip>
