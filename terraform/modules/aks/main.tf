@@ -28,4 +28,9 @@ resource "azurerm_role_assignment" "acr_pull" {
   role_definition_name = "AcrPull"
   scope                = var.acr_id
 }
+lifecycle {
+  ignore_changes = [
+    key_vault_secrets_provider
+  ]
+}
 
