@@ -21,6 +21,12 @@ resource "azurerm_kubernetes_cluster" "aks" {
 
   oidc_issuer_enabled       = true
   workload_identity_enabled = true
+
+  lifecycle {
+    ignore_changes = [
+      key_vault_secrets_provider
+    ]
+  }
 }
 
 resource "azurerm_role_assignment" "acr_pull" {
@@ -28,10 +34,3 @@ resource "azurerm_role_assignment" "acr_pull" {
   role_definition_name = "AcrPull"
   scope                = var.acr_id
 }
-lifecycle {
-  ignore_changes = [
-    key_vault_secrets_provider
-  ]
-}
-}
-
