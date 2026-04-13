@@ -27,3 +27,14 @@ module "aks" {
   acr_id             = module.acr.acr_id
 }
 
+module "keyvault" {
+  source              = "./modules/keyvault"
+  kv_name             = "aks-devops-kv"
+  location            = var.location
+  resource_group_name = module.rg.rg_name
+  tenant_id           = var.tenant_id
+  app_message         = "Thanks for the opportunity and this app is running on AKS Cluster"
+
+  aks_object_id       = module.aks.kubelet_identity_object_id
+}
+
