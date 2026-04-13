@@ -26,13 +26,6 @@ spec:
         - name: secrets-store
           mountPath: "/mnt/secrets"
           readOnly: true
-  
-        env:
-        - name: APP_MESSAGE
-          valueFrom:
-            secretKeyRef:
-              name: azure-kv-secret
-              key: APP-MESSAGE
 
       volumes:
       - name: secrets-store
