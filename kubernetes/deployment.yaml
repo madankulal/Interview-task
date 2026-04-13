@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: aks-demo
-        image: aksdevopsacr12345.azurecr.io/aks-demo:v1
+        image: "<image>".azurecr.io/aks-demo:v1
         ports:
         - containerPort: 5000
 
