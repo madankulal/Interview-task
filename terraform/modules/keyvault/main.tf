@@ -14,3 +14,20 @@ resource "azurerm_key_vault_secret" "app_secret" {
   value        = var.app_message
   key_vault_id = azurerm_key_vault.kv.id
 }
+resource "azurerm_key_vault_access_policy" "aks_policy" {
+  key_vault_id = azurerm_key_vault.kv.id
+  tenant_id    = var.tenant_id
+  object_id    = var.aks_object_id
+
+  secret_permissions = ["Get", "List"]
+}
+module "keyvault" {
+  source              = "./modules/keyvault"
+  kv_name             = "aks-devops-kv"
+  location            = var.location
+  resource_group_name = module.rg.rg_name
+  tenant_id           = var.tenant_id
+  app_message         = "Thanks for the opportunity and this app is running on AKS Cluster"
+
+  aks_object_id       = module.aks.kubelet_identity_object_id
+}
