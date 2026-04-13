@@ -85,6 +85,10 @@ Add monitoring (Prometheus & Grafana)
 Enable autoscaling (HPA)
 Use separate environments (dev/stage/prod)
 
+It was tested in my test environment:
+<img width="1057" height="294" alt="image" src="https://github.com/user-attachments/assets/f3483c3b-150a-4371-bbf8-39a67b0bbe4b" />
+
+
 
 
 
