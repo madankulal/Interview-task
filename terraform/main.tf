@@ -26,14 +26,4 @@ module "aks" {
   log_analytics_id   = module.monitoring.workspace_id
   acr_id             = module.acr.acr_id
 }
-resource "azurerm_key_vault_access_policy" "aks_policy" {
-  key_vault_id = azurerm_key_vault.kv.id
-  tenant_id    = var.tenant_id
-  object_id    = var.aks_object_id
-
-  secret_permissions = [
-    "Get",
-    "List"
-  ]
-}
 
