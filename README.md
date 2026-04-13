@@ -43,11 +43,12 @@ GitHub Actions – CI/CD pipeline
   --name <cluster-name>
 
 4. Deploy Application
+   * Note: Replace <client-id> and <tenant-id> in secret-provider.yaml with your own Azure credentials before deployment.
    kubectl apply -f kubernetes/secret-provider.yaml
    kubectl apply -f kubernetes/deployment.yaml
    kubectl apply -f kubernetes/service.yaml
 
-5. Access Application
+6. Access Application
    kubectl get svc
    Open in browser:
    http://<external-ip>
@@ -83,5 +84,7 @@ Implement Helm for templating
 Add monitoring (Prometheus & Grafana)
 Enable autoscaling (HPA)
 Use separate environments (dev/stage/prod)
+
+
 
 
