@@ -1,6 +1,6 @@
 variable "resource_group_name" {
   description = "Resource Group Name"
-  default     = "aks-devops-rg"
+  default     = "rg-dso-qdb"
 }
 
 variable "location" {
@@ -10,7 +10,7 @@ variable "location" {
 
 variable "cluster_name" {
   description = "AKS Cluster Name"
-  default     = "aks-devops-cluster"
+  default     = "Qqddemocluster"
 }
 
 variable "node_count" {
@@ -20,6 +20,6 @@ variable "node_count" {
 
 variable "acr_name" {
   description = "ACR name (must be globally unique)"
-  default     = "aksdevopsacr12345"
+  default     = "qdbhexawaredemo"
 }
 variable "tenant_id" {}
