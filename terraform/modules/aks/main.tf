@@ -33,4 +33,5 @@ lifecycle {
     key_vault_secrets_provider
   ]
 }
+}
 
