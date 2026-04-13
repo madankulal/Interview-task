@@ -22,3 +22,4 @@ variable "acr_name" {
   description = "ACR name (must be globally unique)"
   default     = "aksdevopsacr12345"
 }
+variable "tenant_id" {}
