@@ -1,29 +1,78 @@
 ## INTERVIEW TASK - SIMPLE APP DEPLOYMENT
 
-OVERVIEW:
-This project demonstrates a complete end-to-end implementation on Azure, covering infrastructure provisioning, containerization, Kubernetes deployment, and secure secrets management.
-The infrastructure is provisioned using Terraform, which creates an Azure Kubernetes Service (AKS) cluster, Azure Container Registry (ACR), Log Analytics workspace, and Azure Key Vault. The application is a simple Python Flask app that is containerized using Docker and deployed to AKS.
-The application securely retrieves its configuration from Azure Key Vault using the Secrets Store CSI Driver, ensuring that sensitive data is never hardcoded or exposed.
-Additionally, the project is structured in a modular way and is CI/CD ready, allowing easy integration with GitHub Actions for automated build and deployment
+This project demonstrates an end-to-end DevOps implementation on Azure, covering infrastructure provisioning, containerization, Kubernetes deployment, and secure secrets management.
 
-Moniotr and Logging Enabled: 
-Infrastructure level:
- * Cluster Logs and Node logs
- * Containter stdout and stderr logs
- * app level.
+The infrastructure is provisioned using Terraform, which creates an Azure Kubernetes Service (AKS) cluster, Azure Container Registry (ACR), Log Analytics workspace, and Azure Key Vault.
 
-Secrets Management implemented: 
-* Secrets stored in Azure Key Vault
-* Accessed using:AKS Managed Identity
-* Secrets Store CSI Driver
-  
-HPA:
-Baic Level
+A Python Flask application is containerized using Docker and deployed to AKS with high availability using multiple replicas.
 
-Based on APP requirement we can enhance app config with below setup.
-Ingress with custom domain + HTTPS
-Horizontal Pod Autoscaler (HPA)
-Helm charts
-Monitoring with Prometheus & Grafana
+The application securely retrieves its configuration from Azure Key Vault using the Secrets Store CSI Driver, ensuring that sensitive data is never hardcoded.
 
-To access APP http://<external ip>
+FLOW - User → LoadBalancer → AKS Cluster → Application Pod -> Azure Key Vault
+
+Repo:
+
+app/                  # Flask application
+terraform/            # Infrastructure code (modular)
+kubernetes/           # Kubernetes manifests
+.github/workflows/    # CI/CD pipeline
+ README.md
+
+Tools/Tech stack:
+Terraform – Infrastructure as Code
+Azure Kubernetes Service (AKS) – Container orchestration
+Azure Container Registry (ACR) – Image storage
+Docker – Containerization
+Azure Key Vault – Secure secret management
+Kubernetes – Deployment and scaling
+GitHub Actions – CI/CD pipeline
+
+Deployment steps:
+1. Provision Infrastructure
+   terraform init
+   terraform apply
+   
+2. Build and Push Docker Image
+   docker build -t aks-demo:v1 .
+   docker tag aks-demo:v1 <acr-name>.azurecr.io/aks-demo:v1
+   docker push <acr-name>.azurecr.io/aks-demo:v1
+
+3. Connect to AKS
+  az aks get-credentials \
+  --resource-group <rg-name> \
+  --name <cluster-name>
+
+4. Deploy Application
+   kubectl apply -f kubernetes/secret-provider.yaml
+   kubectl apply -f kubernetes/deployment.yaml
+   kubectl apply -f kubernetes/service.yaml
+
+5. Access Application
+   kubectl get svc
+   Open in browser:
+   http://<external-ip>
+   
+Secrets Management :   
+Secrets are stored in Azure Key Vault and accessed securely using:
+AKS Managed Identity
+Secrets Store CSI Driver
+Secrets are mounted inside the container at:
+/mnt/secrets/APP-MESSAGE
+
+Application Logic:
+The application retrieves configuration in the following order:
+Azure Key Vault (mounted file)
+Environment variable
+Default fallback
+
+CI-CD:
+GitHub Actions is used to:
+Build Docker image
+Push image to Azure Container Registry
+Deploy updated image to AKS
+
+Logging:
+Application logs are generated using Python logging
+Logs can be viewed using:
+kubectl logs <pod-name>
+
