@@ -18,6 +18,9 @@ resource "azurerm_kubernetes_cluster" "aks" {
   oms_agent {
     log_analytics_workspace_id = var.log_analytics_id
   }
+
+  oidc_issuer_enabled       = true
+  workload_identity_enabled = true
 }
 
 resource "azurerm_role_assignment" "acr_pull" {
