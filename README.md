@@ -16,6 +16,9 @@ Secrets Management implemented:
 * Secrets stored in Azure Key Vault
 * Accessed using:AKS Managed Identity
 * Secrets Store CSI Driver
+  
+HPA:
+Baic Level
 
 Based on APP requirement we can enhance app config with below setup.
 Ingress with custom domain + HTTPS
