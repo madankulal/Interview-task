@@ -28,3 +28,6 @@ resource "azurerm_role_assignment" "acr_pull" {
   role_definition_name = "AcrPull"
   scope                = var.acr_id
 }
+ key_vault_secrets_provider {
+    secret_rotation_enabled = true
+  }
