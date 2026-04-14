@@ -13,20 +13,18 @@ spec:
         app: aks-demo
     spec:
       containers:
-      - name: aks-demo
-        image: "<image>".azurecr.io/aks-demo:v1
-        ports:
-        - containerPort: 5000
-
-        volumeMounts:
-        - name: secrets-store
-          mountPath: "/mnt/secrets"
-          readOnly: true
-
+        - name: aks-demo
+          image: qdbhexawaredemo123.azurecr.io/aks-demo:v2
+          ports:
+            - containerPort: 5000
+          volumeMounts:
+            - name: secrets-store
+              mountPath: "/mnt/secrets"
+              readOnly: true
       volumes:
-      - name: secrets-store
-        csi:
-          driver: secrets-store.csi.k8s.io
-          readOnly: true
-          volumeAttributes:
-            secretProviderClass: "azure-kv-secret"
+        - name: secrets-store
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "azure-kv-secret"
