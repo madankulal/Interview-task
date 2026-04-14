@@ -1,5 +1,29 @@
+# Terraform
 terraform/.terraform/
 terraform/terraform.tfstate
 terraform/terraform.tfstate.backup
+terraform/.terraform.lock.hcl
 *.tfvars
+*.tfvars.json
+
+# Logs
 *.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+venv/
+.env/
+
+# Docker
+*.tar
+
+# Kubernetes
+kubeconfig
