@@ -31,7 +31,7 @@ GitHub Actions – CI/CD pipeline
 1. Provision Infrastructure
    terraform init
    terraform apply
-   
+ Note: Terraform backend storage account is creeated beforehand before running terraform init.
 2. Build and Push Docker Image
    docker build -t aks-demo:v1 .
    docker tag aks-demo:v1 <acr-name>.azurecr.io/aks-demo:v1
@@ -51,7 +51,7 @@ GitHub Actions – CI/CD pipeline
 6. Access Application
    kubectl get svc
    Open in browser:
-   http://<external-ip>
+   http://<external-ip> 
    
 ## Secrets Management :   
 Secrets are stored in Azure Key Vault and accessed securely using:
