@@ -51,6 +51,13 @@ jobs:
         run: |
           sed -i "s|image: .*|image: $ACR_NAME.azurecr.io/$IMAGE_NAME:${{ github.sha }}|g" kubernetes/deployment.yaml
 
+      #  NEW STEP — DRY RUN VALIDATION
+      - name: Validate Kubernetes manifests (Dry Run)
+        run: |
+          kubectl apply -f kubernetes/secret-provider.yaml --dry-run=server
+          kubectl apply -f kubernetes/deployment.yaml --dry-run=server
+          kubectl apply -f kubernetes/service.yaml --dry-run=server
+
       - name: Apply SecretProviderClass
         run: kubectl apply -f kubernetes/secret-provider.yaml
 
@@ -62,3 +69,7 @@ jobs:
 
       - name: Verify rollout
         run: kubectl rollout status deployment/aks-demo
+
+    # OPTIONAL 
+      - name: Check Pods
+        run: kubectl get pods
