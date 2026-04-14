@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: aks-demo
-          image: qdbhexawaredemo123.azurecr.io/aks-demo:v2
+          image: qdbhexawaredemo123.azurecr.io/aks-demo:latest
           ports:
             - containerPort: 5000
           volumeMounts:
