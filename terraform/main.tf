@@ -23,13 +23,14 @@ module "networking" {
 }
 
 module "aks" {
-  source             = "./modules/aks"
-  cluster_name       = var.cluster_name
-  location           = var.location
-  rg_name            = module.rg.rg_name
-  node_count         = var.node_count
-  log_analytics_id   = module.monitoring.workspace_id
-  acr_id             = module.acr.acr_id
+  source           = "./modules/aks"
+  cluster_name     = var.cluster_name
+  location         = var.location
+  rg_name          = module.rg.rg_name
+  node_count       = var.node_count
+  log_analytics_id = module.monitoring.workspace_id
+  acr_id           = module.acr.acr_id
+  aks_subnet_id    = module.networking.aks_subnet_id
 }
 
 module "keyvault" {
