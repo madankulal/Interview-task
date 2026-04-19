@@ -16,6 +16,11 @@ module "acr" {
   rg_name  = module.rg.rg_name
   location = var.location
 }
+module "networking" {
+  source   = "./modules/networking"
+  rg_name  = module.rg.rg_name
+  location = var.location
+}
 
 module "aks" {
   source             = "./modules/aks"
