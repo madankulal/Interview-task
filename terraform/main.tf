@@ -16,8 +16,8 @@ module "acr" {
   rg_name  = module.rg.rg_name
   location = var.location
 }
-module "networking" {
-  source   = "./modules/networking"
+module "network" {
+  source   = "./modules/network"
   rg_name  = module.rg.rg_name
   location = var.location
 }
