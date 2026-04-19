@@ -30,7 +30,7 @@ module "aks" {
   node_count       = var.node_count
   log_analytics_id = module.monitoring.workspace_id
   acr_id           = module.acr.acr_id
-  aks_subnet_id    = module.networking.aks_subnet_id
+  aks_subnet_id    = module.network.aks_subnet_id
 }
 
 module "keyvault" {
