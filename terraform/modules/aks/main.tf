@@ -5,11 +5,12 @@ resource "azurerm_kubernetes_cluster" "aks" {
   dns_prefix          = "aksdemo"
 
   default_node_pool {
-    name       = "nodepool"
-    node_count = var.node_count
-    vm_size    = "Standard_DC2s_v3"
-    type       = "VirtualMachineScaleSets"
-  }
+  name           = "nodepool"
+  node_count     = var.node_count
+  vm_size        = "Standard_DC2s_v3"
+  type           = "VirtualMachineScaleSets"
+  vnet_subnet_id = var.aks_subnet_id
+}
 
   identity {
     type = "SystemAssigned"
