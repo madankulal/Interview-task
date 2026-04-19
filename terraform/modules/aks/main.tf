@@ -11,6 +11,10 @@ resource "azurerm_kubernetes_cluster" "aks" {
   type           = "VirtualMachineScaleSets"
   vnet_subnet_id = var.aks_subnet_id
 }
+network_profile {
+  network_plugin = "azure"
+  network_policy = "azure"
+}
 
   identity {
     type = "SystemAssigned"
